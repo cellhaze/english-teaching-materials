@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Articles & Prepositions — B2 Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1814;
+    --cream: #f7f4ef;
+    --warm: #e8e2d8;
+    --rule: #c8bfae;
+    --accent: #c45c2e;
+    --accent2: #3a6b5c;
+    --correct: #2d6a4f;
+    --wrong: #b5281c;
+    --muted: #7a6f62;
+    --card: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 0 0 80px;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 28px 40px 24px;
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  header .meta {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rule);
+    margin-bottom: 4px;
+  }
+
+  .progress-bar {
+    background: var(--ink);
+    border-bottom: 1px solid #333;
+    padding: 12px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .progress-track {
+    flex: 1;
+    height: 4px;
+    background: #333;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  .progress-text {
+    font-size: 0.78rem;
+    color: var(--rule);
+    letter-spacing: 0.05em;
+    min-width: 60px;
+    text-align: right;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 40px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--cream);
+    overflow-x: auto;
+  }
+
+  .tab {
+    padding: 16px 24px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    margin-bottom: -1px;
+  }
+
+  .tab:hover { color: var(--ink); }
+  .tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .tab .badge {
+    display: inline-block;
+    background: var(--warm);
+    color: var(--muted);
+    font-size: 0.7rem;
+    padding: 1px 6px;
+    border-radius: 20px;
+    margin-left: 6px;
+    font-weight: 500;
+  }
+
+  .tab.active .badge {
+    background: #fce8e1;
+    color: var(--accent);
+  }
+
+  .section {
+    display: none;
+    padding: 36px 40px;
+    max-width: 820px;
+  }
+
+  .section.active { display: block; }
+
+  .section-intro {
+    margin-bottom: 28px;
+    padding: 18px 22px;
+    background: var(--warm);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+  }
+
+  .section-intro h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    margin-bottom: 5px;
+  }
+
+  .section-intro p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* Gap Fill */
+  .exercise-item {
+    background: var(--card);
+    border: 1px solid var(--warm);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 14px;
+    transition: border-color 0.2s;
+  }
+
+  .exercise-item:hover { border-color: var(--rule); }
+
+  .item-num {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .sentence {
+    font-size: 1.02rem;
+    line-height: 1.8;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .blank-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    position: relative;
+  }
+
+  .blank {
+    border: none;
+    border-bottom: 2px solid var(--rule);
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    width: 90px;
+    text-align: center;
+    padding: 2px 6px;
+    outline: none;
+    color: var(--ink);
+    transition: border-color 0.2s;
+  }
+
+  .blank:focus { border-bottom-color: var(--accent); }
+  .blank.correct { border-bottom-color: var(--correct); color: var(--correct); font-weight: 600; }
+  .blank.wrong { border-bottom-color: var(--wrong); color: var(--wrong); }
+  .blank.revealed { border-bottom-color: var(--accent2); color: var(--accent2); font-weight: 600; }
+
+  .feedback-inline {
+    font-size: 0.78rem;
+    margin-left: 6px;
+    font-weight: 600;
+  }
+
+  .feedback-inline.correct { color: var(--correct); }
+  .feedback-inline.wrong { color: var(--wrong); }
+
+  .hint-note {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--warm);
+    display: none;
+    line-height: 1.5;
+  }
+
+  .hint-note.visible { display: block; }
+  .hint-note strong { color: var(--ink); }
+
+  /* Error Correction */
+  .error-sentence {
+    font-size: 1.02rem;
+    line-height: 1.7;
+    padding: 14px 16px;
+    background: #fef8f5;
+    border: 1px solid #f0ddd5;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  .error-input-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .error-input {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink);
+    width: 260px;
+    max-width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .error-input:focus { border-color: var(--accent); }
+  .error-input.correct { border-color: var(--correct); background: #f0faf4; }
+  .error-input.wrong { border-color: var(--wrong); background: #fdf0f0; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 18px;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+  .btn-primary:hover { background: #a84a23; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--rule);
+  }
+  .btn-ghost:hover { border-color: var(--muted); color: var(--ink); }
+
+  .btn-green {
+    background: var(--accent2);
+    color: white;
+  }
+  .btn-green:hover { background: #2e5749; }
+
+  .action-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  /* MCQ */
+  .mcq-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 500px) {
+    .mcq-options { grid-template-columns: 1fr; }
+  }
+
+  .mcq-btn {
+    padding: 10px 16px;
+    border: 1.5px solid var(--rule);
+    border-radius: 6px;
+    background: var(--card);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s;
+    color: var(--ink);
+  }
+
+  .mcq-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .mcq-btn.correct { border-color: var(--correct); background: #f0faf4; color: var(--correct); font-weight: 600; }
+  .mcq-btn.wrong { border-color: var(--wrong); background: #fdf0f0; color: var(--wrong); }
+  .mcq-btn:disabled { cursor: default; }
+
+  /* Score panel */
+  .score-panel {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-top: 32px;
+    display: none;
+  }
+
+  .score-panel.visible { display: block; }
+
+  .score-panel h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .score-big {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin: 10px 0;
+  }
+
+  .score-comment {
+    font-size: 0.9rem;
+    color: var(--rule);
+    margin-top: 6px;
+    line-height: 1.6;
+  }
+
+  /* Teacher notes */
+  .teacher-note {
+    background: #fff9e6;
+    border: 1px solid #e8d88a;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-top: 16px;
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: #5a4a00;
+  }
+
+  .teacher-note strong { color: #3a3000; }
+
+  @media (max-width: 600px) {
+    header, .tabs, .section { padding-left: 20px; padding-right: 20px; }
+    .progress-bar { padding: 12px 20px; }
+    header h1 { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="meta">B2 English — Targeted Practice</div>
+    <h1>Articles &amp; Prepositions</h1>
+  </div>
+</header>
+
+<div class="progress-bar">
+  <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
+  <div class="progress-text" id="progText">0 / 0</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(0)">Gap Fill <span class="badge">8</span></div>
+  <div class="tab" onclick="switchTab(1)">Error Correction <span class="badge">6</span></div>
+  <div class="tab" onclick="switchTab(2)">Multiple Choice <span class="badge">6</span></div>
+</div>
+
+<!-- ===== SECTION 1: GAP FILL ===== -->
+<div class="section active" id="sec0">
+  <div class="section-intro">
+    <h2>Gap Fill — Articles &amp; Prepositions</h2>
+    <p>Type the missing word in each blank. Focus on whether context makes the noun specific, generic, or uncountable — and which preposition collocates correctly.</p>
+  </div>
+
+  <div id="gapItems"></div>
+
+  <div class="action-row">
+    <button class="btn btn-primary" onclick="checkGap()">Check answers</button>
+    <button class="btn btn-ghost" onclick="revealGap()">Show all answers</button>
+    <button class="btn btn-ghost" onclick="resetGap()">Reset</button>
+  </div>
+
+  <div class="score-panel" id="gapScore">
+    <h3>Gap Fill Results</h3>
+    <div class="score-big" id="gapScoreNum">—</div>
+    <div class="score-comment" id="gapScoreMsg"></div>
+  </div>
+</div>
+
+<!-- ===== SECTION 2: ERROR CORRECTION ===== -->
+<div class="section" id="sec1">
+  <div class="section-intro">
+    <h2>Error Correction</h2>
+    <p>Each sentence contains one article or preposition error. Rewrite <em>only the incorrect word</em> in the box — just the single corrected word, nothing else.</p>
+  </div>
+
+  <div id="errorItems"></div>
+
+  <div class="action-row">
+    <button class="btn btn-primary" onclick="checkError()">Check answers</button>
+    <button class="btn btn-ghost" onclick="revealError()">Show all answers</button>
+    <button class="btn btn-ghost" onclick="resetError()">Reset</button>
+  </div>
+
+  <div class="score-panel" id="errorScore">
+    <h3>Error Correction Results</h3>
+    <div class="score-big" id="errorScoreNum">—</div>
+    <div class="score-comment" id="errorScoreMsg"></div>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: MCQ ===== -->
+<div class="section" id="sec2">
+  <div class="section-intro">
+    <h2>Multiple Choice — Tricky Cases</h2>
+    <p>These target the cases where Spanish interference is most common: zero article with abstract nouns, preposition collocations with no direct Spanish equivalent, and fixed phrases.</p>
+  </div>
+
+  <div id="mcqItems"></div>
+
+  <div class="score-panel" id="mcqScore">
+    <h3>Multiple Choice Results</h3>
+    <div class="score-big" id="mcqScoreNum">—</div>
+    <div class="score-comment" id="mcqScoreMsg"></div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+
+const gapData = [
+  {
+    parts: ["She's been ", " manager at ", " same company for over ", " decade."],
+    blanks: ["a", "the", "a"],
+    hints: [
+      "She holds one of possibly several manager roles — indefinite article.",
+      "'Same' always requires 'the' — it points to one specific company.",
+      "'A decade' — a countable singular period, not a specific known one."
+    ],
+    positions: [1, 2, 3]
+  },
+  {
+    parts: ["I'm not very good ", " dealing with ", " criticism, especially in ", " public."],
+    blanks: ["at", "—", ""],
+    answers: ["at", "", ""],
+    raw: ["at", "∅", "in public"],
+    hints: [
+      "'Good at' is a fixed collocation. Spanish uses 'bueno en' but English uses 'at'.",
+      "'Criticism' here is uncountable and used generically — zero article.",
+      "'In public' is a fixed prepositional phrase — no article."
+    ],
+    positions: [1, 2, 3],
+    display_answers: ["at", "∅ (no article)", "∅ (fixed phrase: in public)"]
+  },
+  {
+    parts: ["He was accused ", " lying about ", " accident that happened ", " the corner of Main Street."],
+    blanks: ["of", "the", "at"],
+    hints: [
+      "'Accused of' — fixed collocation, not 'for' (a common error).",
+      "There is one specific accident — the speaker and listener both know which one.",
+      "'At the corner' — location at a point. 'In the corner' works for interior spaces."
+    ],
+    positions: [1, 2, 3]
+  },
+  {
+    parts: ["I heard it ", " the radio while I was driving to ", " work ", " the morning."],
+    blanks: ["on", "—", "in"],
+    display_answers: ["on", "∅ (work = uncountable routine)", "in"],
+    hints: [
+      "'On the radio' — fixed phrase. Compare: on TV, on the phone.",
+      "'Work' used as a destination in routine contexts takes zero article in English.",
+      "'In the morning' — time expression with 'in' for parts of the day."
+    ],
+    positions: [1, 2, 3]
+  },
+  {
+    parts: ["There's been ", " sharp rise ", " the number of people applying for ", " job."],
+    blanks: ["a", "in", "the"],
+    hints: [
+      "'A sharp rise' — countable, indefinite, one instance.",
+      "'A rise in something' — fixed collocation. Not 'of' or 'on'.",
+      "'The job' — a specific previously mentioned or contextually clear job."
+    ],
+    positions: [1, 2, 3]
+  },
+  {
+    parts: ["She's responsible ", " training ", " new staff who join ", " the end of each quarter."],
+    blanks: ["for", "the", "at"],
+    hints: [
+      "'Responsible for' — not 'of' (which mirrors Spanish 'responsable de').",
+      "'The new staff' refers to a specific, known group.",
+      "'At the end of' — fixed time expression. Compare 'in the end' (= finally)."
+    ],
+    positions: [1, 2, 3]
+  },
+  {
+    parts: ["", " information you provided was helpful, but we need to talk ", " the budget ", " more detail."],
+    blanks: ["The", "about", "in"],
+    hints: [
+      "'The information' — specific information previously provided or clearly identified.",
+      "'Talk about something' — not 'of' (a direct Spanish calque: 'hablar de').",
+      "'In detail / in more detail' — fixed adverbial phrase, no article."
+    ],
+    positions: [0, 2, 3]
+  },
+  {
+    parts: ["It depends ", " whether she arrives ", " time or ", " the last minute."],
+    blanks: ["on", "on", "at"],
+    hints: [
+      "'Depend on' — not 'of' or 'from' (Spanish: 'depender de').",
+      "'On time' = punctually. Fixed phrase, no article.",
+      "'At the last minute' — fixed idiom. Always uses 'at'."
+    ],
+    positions: [1, 2, 3]
+  }
+];
+
+const errorData = [
+  {
+    sentence: "She gave a very useful advise during the meeting.",
+    error: "advise",
+    correction: "advice",
+    explanation: "'Advice' is an uncountable noun in English — you can't say 'an advice'. Spanish 'consejo' is countable, which causes this error. Say 'some advice' or 'a piece of advice'."
+  },
+  {
+    sentence: "He's been living in the same neighbourhood since the last three years.",
+    error: "the",
+    correction: "∅ (remove 'the')",
+    answer: "",
+    explanation: "With 'for/since + time period', no article is used before the number: 'for the last three years' takes 'the' correctly — actually this IS correct. The error is 'since' — it should be 'for' (duration). Correction: 'for the last three years'.",
+    error_word: "since",
+    correction_word: "for",
+  },
+  {
+    sentence: "I'm not interested for learning another language right now.",
+    error: "for",
+    correction: "in",
+    explanation: "'Interested in' is fixed. 'For' is a direct calque from Spanish 'interesado en' — both use 'en', but English maps to 'in', not 'for'."
+  },
+  {
+    sentence: "They arrived to the airport two hours before the flight.",
+    error: "to",
+    correction: "at",
+    explanation: "'Arrive at' is used for specific points/locations (airport, station, office). 'Arrive in' is for cities/countries. Spanish uses 'llegar a' for both, which pulls learners toward 'to'."
+  },
+  {
+    sentence: "The happiness is something everyone searches for.",
+    error: "The",
+    correction: "∅ (remove 'The')",
+    answer: "",
+    explanation: "'Happiness' used generically (as a concept) takes zero article. 'The happiness' would mean a specific happiness already mentioned. Spanish often uses 'la felicidad' generically, leading to this overgeneralisation."
+  },
+  {
+    sentence: "She graduated in the university in 2019 with a degree in economics.",
+    error: "in the",
+    correction: "from",
+    explanation: "'Graduate from university/college' is the correct collocation. 'In the university' is a direct translation from Spanish 'en la universidad' but doesn't work here."
+  }
+];
+
+const mcqData = [
+  {
+    sentence: "She was promoted ___ head of department last spring.",
+    options: ["to", "as", "into", "for"],
+    answer: 0,
+    explanation: "'Promoted to [position]' is the standard collocation. 'As' can sometimes work but 'to' is more natural here. 'Into' is never correct."
+  },
+  {
+    sentence: "___ patience is needed when learning a new skill.",
+    options: ["The", "A", "∅ (no article)", "Some"],
+    answer: 2,
+    explanation: "When 'patience' is used as a general, uncountable concept, it takes zero article. 'The patience' would refer to a specific patience; 'a patience' is ungrammatical."
+  },
+  {
+    sentence: "I disagree ___ what you said in the report.",
+    options: ["about", "with", "of", "against"],
+    answer: 1,
+    explanation: "'Disagree with someone/something' is fixed. Spanish 'no estar de acuerdo con' maps correctly here, but learners sometimes try 'about' or 'of'."
+  },
+  {
+    sentence: "We were surprised ___ the news about the merger.",
+    options: ["about", "for", "by", "from"],
+    answer: 2,
+    explanation: "'Surprised by' is used with the cause of surprise. 'Surprised about' can also be used (referring to the topic), so be aware both may be accepted in some contexts — but 'by' is more precise here."
+  },
+  {
+    sentence: "Could you give me ___ information about the programme?",
+    options: ["an", "some", "a piece an", "any informations about"],
+    answer: 1,
+    explanation: "'Information' is uncountable in English — never 'an information' or 'informations'. Use 'some', 'any', or 'a piece of information'."
+  },
+  {
+    sentence: "She's been ___ the phone all morning — I can't get through.",
+    options: ["in", "at", "on", "by"],
+    answer: 2,
+    explanation: "'On the phone' is a fixed phrase for being in a phone conversation. Compare: on TV, on the radio, on the internet."
+  }
+];
+
+// ============================================================
+// RENDER
+// ============================================================
+
+function renderGap() {
+  const container = document.getElementById('gapItems');
+  container.innerHTML = '';
+  gapData.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'exercise-item';
+    div.id = `gap_${i}`;
+
+    let sentenceHTML = '';
+    const parts = item.parts;
+    const positions = item.positions;
+
+    parts.forEach((part, pi) => {
+      if (part) sentenceHTML += `<span>${part}</span>`;
+      if (pi < parts.length - 1) {
+        const blankIdx = positions.indexOf(pi + 1) >= 0 ? positions.indexOf(pi + 1) : -1;
+        if (positions.includes(pi + 1) || (pi === 0 && positions.includes(0))) {
+          const bi = positions.includes(pi + 1) ? positions.indexOf(pi + 1) : 0;
+          sentenceHTML += `<span class="blank-wrap"><input class="blank" type="text" id="g_${i}_${bi}" autocomplete="off" spellcheck="false"><span class="feedback-inline" id="gf_${i}_${bi}"></span></span>`;
+        }
+      }
+    });
+
+    // Simpler approach: just render blanks inline
+    div.innerHTML = `<div class="item-num">Question ${i + 1}</div>` + buildGapSentence(item, i) +
+      `<div class="hint-note" id="ghint_${i}"></div>`;
+    container.appendChild(div);
+  });
+}
+
+function buildGapSentence(item, i) {
+  const parts = item.parts;
+  let html = '<div class="sentence">';
+  parts.forEach((part, pi) => {
+    if (part) html += `<span>${part}</span>`;
+    if (pi < parts.length - 1) {
+      html += `<span class="blank-wrap"><input class="blank" type="text" id="g_${i}_${pi}" autocomplete="off" spellcheck="false" placeholder="…"><span class="feedback-inline" id="gf_${i}_${pi}"></span></span>`;
+    }
+  });
+  html += '</div>';
+  return html;
+}
+
+function renderError() {
+  const container = document.getElementById('errorItems');
+  container.innerHTML = '';
+  errorData.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'exercise-item';
+    div.innerHTML = `
+      <div class="item-num">Sentence ${i + 1}</div>
+      <div class="error-sentence">${item.sentence}</div>
+      <div class="error-input-row">
+        <label style="font-size:0.82rem;color:var(--muted);font-weight:500;">Correction:</label>
+        <input class="error-input" type="text" id="err_${i}" autocomplete="off" spellcheck="false" placeholder="Type the corrected word…">
+        <span class="feedback-inline" id="errf_${i}"></span>
+      </div>
+      <div class="hint-note" id="errhint_${i}"></div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function renderMCQ() {
+  const container = document.getElementById('mcqItems');
+  container.innerHTML = '';
+  mcqData.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'exercise-item';
+    const opts = item.options.map((o, j) =>
+      `<button class="mcq-btn" id="mcq_${i}_${j}" onclick="selectMCQ(${i},${j})">${o}</button>`
+    ).join('');
+    div.innerHTML = `
+      <div class="item-num">Question ${i + 1}</div>
+      <div class="sentence" style="margin-bottom:12px;">${item.sentence}</div>
+      <div class="mcq-options">${opts}</div>
+      <div class="hint-note" id="mcqhint_${i}"></div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+// ============================================================
+// CHECK / REVEAL
+// ============================================================
+
+let gapAnswered = 0, errorAnswered = 0, mcqAnswered = 0;
+let mcqResults = new Array(mcqData.length).fill(null);
+
+function normalise(s) {
+  return s.trim().toLowerCase().replace(/[∅\-–]/g, '').replace(/\s+/g,'');
+}
+
+function checkGap() {
+  let correct = 0, total = 0;
+  gapData.forEach((item, i) => {
+    const answers = item.display_answers || item.blanks;
+    const raw_answers = item.blanks;
+    item.parts.forEach((part, pi) => {
+      if (pi < item.parts.length - 1) {
+        total++;
+        const input = document.getElementById(`g_${i}_${pi}`);
+        const fb = document.getElementById(`gf_${i}_${pi}`);
+        const ans = raw_answers[pi] || '';
+        const val = (input.value || '').trim().toLowerCase();
+        const normAns = ans.toLowerCase();
+        if (normAns === '' && (val === '' || val === '∅' || val === '-')) {
+          correct++;
+          input.className = 'blank correct';
+          fb.textContent = '✓';
+          fb.className = 'feedback-inline correct';
+        } else if (val === normAns) {
+          correct++;
+          input.className = 'blank correct';
+          fb.textContent = '✓';
+          fb.className = 'feedback-inline correct';
+        } else {
+          input.className = 'blank wrong';
+          fb.textContent = '✗';
+          fb.className = 'feedback-inline wrong';
+        }
+        // show hints
+        const hint = document.getElementById(`ghint_${i}`);
+        hint.innerHTML = item.hints.map((h, hi) => `<strong>Blank ${hi+1}:</strong> ${h}`).join('<br>');
+        hint.className = 'hint-note visible';
+      }
+    });
+  });
+  showScore('gapScore', 'gapScoreNum', 'gapScoreMsg', correct, total);
+  updateProgress();
+}
+
+function revealGap() {
+  gapData.forEach((item, i) => {
+    const raw_answers = item.blanks;
+    item.parts.forEach((part, pi) => {
+      if (pi < item.parts.length - 1) {
+        const input = document.getElementById(`g_${i}_${pi}`);
+        input.value = raw_answers[pi] === '' ? '∅' : raw_answers[pi];
+        input.className = 'blank revealed';
+        input.disabled = true;
+      }
+    });
+    const hint = document.getElementById(`ghint_${i}`);
+    hint.innerHTML = item.hints.map((h, hi) => `<strong>Blank ${hi+1}:</strong> ${h}`).join('<br>');
+    hint.className = 'hint-note visible';
+  });
+}
+
+function resetGap() {
+  gapData.forEach((item, i) => {
+    item.parts.forEach((part, pi) => {
+      if (pi < item.parts.length - 1) {
+        const input = document.getElementById(`g_${i}_${pi}`);
+        if (input) { input.value = ''; input.className = 'blank'; input.disabled = false; }
+        const fb = document.getElementById(`gf_${i}_${pi}`);
+        if (fb) { fb.textContent = ''; fb.className = 'feedback-inline'; }
+      }
+    });
+    const hint = document.getElementById(`ghint_${i}`);
+    if (hint) hint.className = 'hint-note';
+  });
+  document.getElementById('gapScore').className = 'score-panel';
+  updateProgress();
+}
+
+function checkError() {
+  let correct = 0;
+  errorData.forEach((item, i) => {
+    const input = document.getElementById(`err_${i}`);
+    const fb = document.getElementById(`errf_${i}`);
+    const hint = document.getElementById(`errhint_${i}`);
+    const val = input.value.trim().toLowerCase();
+    const target = (item.correction_word || item.correction).toLowerCase().replace('∅ (remove \'the\')', '').replace('∅ (remove "the")', '').trim();
+    const isCorrect = val === target || (target.includes('for') && val === 'for') || (target === 'in' && val === 'in') || (target === 'at' && val === 'at') || (target === 'from' && val === 'from') || (target === 'advice' && val === 'advice') || (target === 'with' && val === 'with');
+
+    // simpler exact match on key correction
+    const key = item.correction_word || item.correction.replace(/∅.*/, '').trim().replace(/\(.*\)/,'').trim();
+    if (input.value.trim().toLowerCase() === key.toLowerCase()) {
+      correct++;
+      input.className = 'error-input correct';
+      fb.textContent = '✓ Correct';
+      fb.className = 'feedback-inline correct';
+    } else {
+      input.className = 'error-input wrong';
+      fb.textContent = `✗ Answer: ${key}`;
+      fb.className = 'feedback-inline wrong';
+    }
+    hint.textContent = item.explanation;
+    hint.className = 'hint-note visible';
+  });
+  showScore('errorScore', 'errorScoreNum', 'errorScoreMsg', correct, errorData.length);
+  updateProgress();
+}
+
+function revealError() {
+  errorData.forEach((item, i) => {
+    const input = document.getElementById(`err_${i}`);
+    const key = item.correction_word || item.correction.replace(/∅.*/, '').trim().replace(/\(.*\)/,'').trim();
+    input.value = key;
+    input.className = 'error-input revealed';
+    input.disabled = true;
+    const hint = document.getElementById(`errhint_${i}`);
+    hint.textContent = item.explanation;
+    hint.className = 'hint-note visible';
+  });
+}
+
+function resetError() {
+  errorData.forEach((item, i) => {
+    const input = document.getElementById(`err_${i}`);
+    if (input) { input.value = ''; input.className = 'error-input'; input.disabled = false; }
+    const fb = document.getElementById(`errf_${i}`);
+    if (fb) { fb.textContent = ''; fb.className = 'feedback-inline'; }
+    const hint = document.getElementById(`errhint_${i}`);
+    if (hint) hint.className = 'hint-note';
+  });
+  document.getElementById('errorScore').className = 'score-panel';
+  updateProgress();
+}
+
+function selectMCQ(qi, oi) {
+  if (mcqResults[qi] !== null) return;
+  mcqResults[qi] = oi;
+  const item = mcqData[qi];
+  item.options.forEach((_, j) => {
+    const btn = document.getElementById(`mcq_${qi}_${j}`);
+    btn.disabled = true;
+    if (j === item.answer) btn.className = 'mcq-btn correct';
+    else if (j === oi && oi !== item.answer) btn.className = 'mcq-btn wrong';
+  });
+  const hint = document.getElementById(`mcqhint_${qi}`);
+  hint.textContent = item.explanation;
+  hint.className = 'hint-note visible';
+
+  const answered = mcqResults.filter(r => r !== null).length;
+  if (answered === mcqData.length) {
+    const correct = mcqResults.filter((r, i) => r === mcqData[i].answer).length;
+    showScore('mcqScore', 'mcqScoreNum', 'mcqScoreMsg', correct, mcqData.length);
+  }
+  updateProgress();
+}
+
+function showScore(panelId, numId, msgId, correct, total) {
+  const panel = document.getElementById(panelId);
+  const num = document.getElementById(numId);
+  const msg = document.getElementById(msgId);
+  panel.className = 'score-panel visible';
+  num.textContent = `${correct} / ${total}`;
+  const pct = correct / total;
+  if (pct === 1) msg.textContent = "Perfect. Every article and preposition correct — this is strong B2 control.";
+  else if (pct >= 0.75) msg.textContent = "Good work. Review the items you missed — note any interference patterns from Spanish.";
+  else if (pct >= 0.5) msg.textContent = "Solid attempt. Focus on the explanations for each error — several of these are common Spanish-interference patterns worth drilling.";
+  else msg.textContent = "Keep practising. Work through the explanations carefully — these are tricky areas even at B2 level.";
+}
+
+function updateProgress() {
+  // rough count of interactions
+  const total = gapData.reduce((a, g) => a + g.parts.length - 1, 0) + errorData.length + mcqData.length;
+  const done = mcqResults.filter(r => r !== null).length;
+  const fill = document.getElementById('progFill');
+  const text = document.getElementById('progText');
+  const pct = Math.round((done / total) * 100);
+  fill.style.width = pct + '%';
+  text.textContent = `${done} / ${total}`;
+}
+
+// ============================================================
+// TABS
+// ============================================================
+function switchTab(idx) {
+  document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+  document.querySelectorAll('.section').forEach((s, i) => s.classList.toggle('active', i === idx));
+}
+
+// ============================================================
+// INIT
+// ============================================================
+renderGap();
+renderError();
+renderMCQ();
+updateProgress();
+</script>
+</body>
+</html>
